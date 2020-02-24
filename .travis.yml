@@ -25,21 +25,7 @@ after_success:
     #- codecov
     
 
-
-deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN
-  keep_history: true
-  on:
-    branch: master
-    
-after_deploy:
-  - git add Test_calc.py
-  - git commit -m "Make travis.sh executable"
-  - git push
-
-    
+ 
 
 
     
