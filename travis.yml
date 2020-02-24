@@ -1,0 +1,51 @@
+language: python
+python:
+  - "3.5"
+# command to install dependencies
+install:
+  - pip install -r requirements.txt
+  - pip install codecov
+  - pip install pandas
+  - pip install xlrd
+    #For Coverage Report
+# command to run tests
+script:
+  - export PYTHONPATH=$PYTHONPATH:$(pwd)
+  - python 1.py
+  - ls
+  - ls
+  
+
+ # - coverage run 1.py
+branches:
+  #only:
+   #- master
+after_success:
+    #- coveralls
+    #- codecov
+    
+
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  keep_history: true
+  on:
+    branch: master
+    
+after_deploy:
+  - git add Test_calc.py
+  - git commit -m "Make travis.sh executable"
+  - git push
+
+    
+
+
+    
+notifications:
+  email:
+    recipients:
+   #   - prithvisekhp@xxx.com #default sends to registered email
+    on_success: always
+    on_failure: always
